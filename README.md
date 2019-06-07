@@ -1,2 +1,3 @@
-# pedigree_parser
-Quick pedigree file parser
+# Pedigree File Parser
+
+Python package to parse pedigree files and check family constellations.

@@ -1,0 +1,3 @@
+class FileFormatError(Exception):
+    pass
+

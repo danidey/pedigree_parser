@@ -33,14 +33,12 @@ def split_pedline(line: str) -> List[str]:
 
 
 with open('../examples/not_tab.ped', 'r') as f:
-    #for line in f:
-    #    line = line.rstrip()
-    #    # check if line starts with comment character (#) or is empty
-    #    if not line or line.startswith('#'):
-    #        continue
-    #    else:
-    #        a = split_pedline(123)
-    #        print(a)
-    reader = csv.DictReader(f)
-    for row in reader:
-        print(row)
+    for line in f:
+        line = line.rstrip()
+        # check if line starts with comment character (#) or is empty
+        if not line or line.startswith('#'):
+            continue
+        else:
+            a = split_pedline(line)
+            print(a)
+

@@ -1,4 +1,5 @@
 # this is a comment
-fam001.indiv1.pat1.mat1.1.2
+fam001 indiv1 pat1 mat1 1 2
 fam001 pat1 0 0 2 1
 fam001 mat1 0 0 1 1
+fam2 test 0 0 1 1

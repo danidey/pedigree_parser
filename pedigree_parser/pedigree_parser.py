@@ -13,6 +13,21 @@ class Individual(object):
         self.sex = sex
         self.aff = aff
 
+        self.has_parents = False
+
+    def has_parents(self):
+        if self.patid != '0' 
+
+
+class Family(object):
+
+    def __init__(self, famid: str, fam_members: List):
+        self.famid = famid
+        self.individuals  = fam_members
+
+    def family_check(self):
+
+
 
 def split_pedline(line: str) -> List[str]:
     # try to split line on different possible separators
@@ -32,6 +47,17 @@ def split_pedline(line: str) -> List[str]:
         return split_line
 
 
+def find_family(individuals):
+    fam_ids = list(set([x.famid for x in individuals]))
+    print(fam_ids)
+
+    for i in fam_ids:
+        fam = [x for x in individuals if x.famid == i]
+        print(fam)
+
+
+individuals = []
+
 with open('../examples/not_tab.ped', 'r') as f:
     for line in f:
         line = line.rstrip()
@@ -42,3 +68,11 @@ with open('../examples/not_tab.ped', 'r') as f:
             a = split_pedline(line)
             print(a)
 
+        ind = Individual(a[0], a[1], a[2], a[3], int(a[4]), int(a[5]))
+        individuals.append(ind)
+
+
+for i in individuals:
+    print(i.indid)
+
+find_family(individuals)

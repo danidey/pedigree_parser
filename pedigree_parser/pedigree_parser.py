@@ -16,7 +16,7 @@ class Individual(object):
         self.has_parents = False
 
     def has_parents(self):
-        if self.patid != '0' 
+        if self.patid != '0'
 
 
 class Family(object):

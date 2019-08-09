@@ -4,7 +4,6 @@ import csv
 
 
 class Individual(object):
-
     def __init__(self, famid: str, indid: str, patid: str, matid: str, sex: int, aff: int):
         self.famid = famid
         self.indid = indid
@@ -13,19 +12,26 @@ class Individual(object):
         self.sex = sex
         self.aff = aff
 
-        self.has_parents = False
+        if self.patid != '0':
+            self.has_father = True
+        else:
+            self.has_mother = False
 
-    def has_parents(self):
-        if self.patid != '0'
+        if self.matid != '0':
+            self.has_mother = True
+        else:
+            self.has_mother = False
 
 
 class Family(object):
 
     def __init__(self, famid: str, fam_members: List):
         self.famid = famid
-        self.individuals  = fam_members
+        self.individuals = fam_members
 
-    def family_check(self):
+    def check_relations(self):
+        for ind in self.individuals:
+
 
 
 
@@ -51,28 +57,43 @@ def find_family(individuals):
     fam_ids = list(set([x.famid for x in individuals]))
     print(fam_ids)
 
+    families = []
     for i in fam_ids:
-        fam = [x for x in individuals if x.famid == i]
-        print(fam)
+        fam_individuals = [x for x in individuals if x.famid == i]
+        fam = Family(i, fam_individuals)
+        families.append(fam)
+
+    return families
 
 
-individuals = []
 
-with open('../examples/not_tab.ped', 'r') as f:
-    for line in f:
-        line = line.rstrip()
-        # check if line starts with comment character (#) or is empty
-        if not line or line.startswith('#'):
-            continue
-        else:
-            a = split_pedline(line)
-            print(a)
+def read_pedfile(ped):
+    individuals = []
 
-        ind = Individual(a[0], a[1], a[2], a[3], int(a[4]), int(a[5]))
-        individuals.append(ind)
+    with open(ped, 'r') as f:
+        for line in f:
+            line = line.rstrip()
+            # check if line starts with comment character (#) or is empty
+            if not line or line.startswith('#'):
+                continue
+            else:
+                a = split_pedline(line)
+                print(a)
+
+            ind = Individual(a[0], a[1], a[2], a[3], int(a[4]), int(a[5]))
+            individuals.append(ind)
+
+    return individuals
 
 
-for i in individuals:
-    print(i.indid)
+def main():
+    ped = '../examples/not_tab.ped'
+    individuals = read_pedfile(ped)
 
-find_family(individuals)
+    for i in individuals:
+        print(i.indid, i.has_parents)
+
+    find_family(individuals)
+
+if __name__ == '__main__':
+    main()

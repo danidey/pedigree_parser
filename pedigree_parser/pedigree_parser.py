@@ -30,7 +30,8 @@ class Family(object):
         self.individuals = fam_members
 
     def check_relations(self):
-        for ind in self.individuals:
+        pass
+        #for ind in self.individuals:
 
 
 
